@@ -1,30 +1,34 @@
-# GitHub CLI Usage Guide
+# GitHub CLI Setup Guide
 
 ## 🚀 Quick Start
 
-Your GitHub CLI is now set up and authenticated! You can use the short command `gh` instead of the full path since it's installed system-wide.
+This guide helps you set up and use GitHub CLI effectively. After installation, you can use the short command `gh` instead of the full path since it's installed system-wide.
 
 **Note**: If `gh` command is not recognized in new terminal sessions, restart your terminal or use the full path: `"C:\Program Files\GitHub CLI\gh.exe"`
 
-## 🔐 Authentication Status
+## 🔐 Authentication Setup
 
-Your current authentication:
-- ✅ **User**: molodeztom
-- ✅ **Storage**: Windows Keyring (secure & persistent)
-- ✅ **Protocol**: HTTPS
-- ✅ **Scopes**: gist, read:org, repo
+To authenticate with GitHub CLI:
 
-Check authentication anytime:
 ```bash
+# Login to GitHub
+gh auth login
+
+# Check authentication status
 gh auth status
 ```
+
+Your authentication will include:
+- ✅ **Storage**: Windows Keyring (secure & persistent)
+- ✅ **Protocol**: HTTPS (recommended)
+- ✅ **Scopes**: gist, read:org, repo (standard permissions)
 
 ## 📁 Repository Operations
 
 ### View Repository Information
 ```bash
-# View your expense-splitting-app repository
-gh repo view molodeztom/expense-splitting-app
+# View your repository
+gh repo view your-username/your-repository
 
 # View any public repository
 gh repo view owner/repository-name
@@ -45,10 +49,10 @@ gh repo list --visibility public
 ### Clone Repositories
 ```bash
 # Clone your repository
-gh repo clone molodeztom/expense-splitting-app
+gh repo clone your-username/your-repository
 
 # Clone to specific directory
-gh repo clone molodeztom/expense-splitting-app ./my-project
+gh repo clone your-username/your-repository ./my-project
 ```
 
 ### Create New Repository
@@ -71,7 +75,7 @@ gh repo create my-new-project --description "My awesome project" --public
 gh issue list
 
 # List issues in specific repository
-gh issue list --repo molodeztom/expense-splitting-app
+gh issue list --repo your-username/your-repository
 
 # Filter by state
 gh issue list --state open
@@ -110,7 +114,7 @@ gh issue reopen 123
 gh pr list
 
 # List PRs in specific repository
-gh pr list --repo molodeztom/expense-splitting-app
+gh pr list --repo your-username/your-repository
 
 # Filter by state
 gh pr list --state open
@@ -192,7 +196,7 @@ gh auth setup-git
 gh config set editor "code --wait"
 
 # Set default repository for commands
-gh repo set-default molodeztom/expense-splitting-app
+gh repo set-default your-username/your-repository
 ```
 
 ### Aliases
@@ -251,7 +255,7 @@ gh auth status
 gh repo list
 
 # 3. Clone a repository
-gh repo clone molodeztom/expense-splitting-app
+gh repo clone your-username/your-repository
 
 # 4. Create a new branch and make changes
 # (make your code changes)
@@ -270,18 +274,19 @@ gh issue create --title "Enhancement: Add dark mode"
 gh repo create my-awesome-project --public --description "My new project"
 
 # Clone it locally
-gh repo clone molodeztom/my-awesome-project
+gh repo clone your-username/my-awesome-project
 
 # Set as default for CLI commands
-gh repo set-default molodeztom/my-awesome-project
+gh repo set-default your-username/my-awesome-project
 ```
 
 ## 🔒 Security Best Practices
 
-1. **Token Security**: Your authentication token is stored securely in Windows Keyring
-2. **Scope Limitation**: Only necessary scopes are granted (gist, read:org, repo)
+1. **Token Security**: Authentication tokens are stored securely in Windows Keyring
+2. **Scope Limitation**: Only grant necessary scopes (gist, read:org, repo)
 3. **Regular Updates**: Keep GitHub CLI updated with `winget upgrade GitHub.cli`
 4. **Token Refresh**: Tokens are automatically refreshed as needed
+5. **Configuration Files**: Keep personal configuration files private and out of version control
 
 ## 📚 Additional Resources
 
@@ -291,7 +296,7 @@ gh repo set-default molodeztom/my-awesome-project
 
 ## 🎯 Next Steps
 
-Your GitHub CLI is now fully configured and ready to use! You can:
+After setting up GitHub CLI, you can:
 
 1. **Start using short commands**: Try `gh repo list` in any terminal
 2. **Set up aliases**: Create shortcuts for your most-used commands

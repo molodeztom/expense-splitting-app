@@ -153,15 +153,34 @@ class SplitWiseApp {
 }
 ```
 
+## 🔒 Security & Configuration
+
+This project follows security best practices for configuration management:
+
+- **Sensitive files are excluded** from version control via [`.gitignore`](.gitignore)
+- **Template files provided** for safe sharing of configuration examples
+- **Security documentation** available in [`SECURITY-CONFIGURATION.md`](SECURITY-CONFIGURATION.md)
+
+### Configuration Files
+- [`github-config.example.json`](github-config.example.json) - Template for GitHub CLI configuration
+- [`GitHub-CLI-Setup-Guide.md`](GitHub-CLI-Setup-Guide.md) - Generic setup guide for GitHub CLI
+- [`SECURITY-CONFIGURATION.md`](SECURITY-CONFIGURATION.md) - Comprehensive security guidelines
+
+**Note**: Personal configuration files containing usernames, repository lists, or authentication details are kept private and not committed to the repository.
+
 ## 🏗️ Project Structure
 
 ```
 splitwise-app/
-├── index.html          # Main HTML structure
-├── styles.css          # Complete CSS styling with design system
-├── app.js              # Core JavaScript application logic
-├── .gitignore          # Git ignore rules
-└── README.md           # This documentation
+├── index.html                    # Main HTML structure
+├── styles.css                    # Complete CSS styling with design system
+├── app.js                        # Core JavaScript application logic
+├── .gitignore                    # Git ignore rules (includes security patterns)
+├── README.md                     # This documentation
+├── SECURITY.md                   # Security policy
+├── SECURITY-CONFIGURATION.md     # Configuration security guidelines
+├── github-config.example.json    # GitHub CLI configuration template
+└── GitHub-CLI-Setup-Guide.md     # Generic GitHub CLI setup guide
 ```
 
 ### File Breakdown

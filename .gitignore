@@ -111,3 +111,14 @@ pids
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test/
+
+# GitHub configuration and sensitive files
+github-config.json
+*-config.json
+GitHub-CLI-Guide.md
+*-CLI-Guide.md
+
+# Personal authentication and setup files
+auth-*.json
+setup-*.json
+personal-*.json

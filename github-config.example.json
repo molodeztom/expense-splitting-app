@@ -1,0 +1,52 @@
+{
+  "project": {
+    "name": "YourProjectName",
+    "description": "Your project description",
+    "created": "YYYY-MM-DD"
+  },
+  "github": {
+    "cli_version": "2.76.2",
+    "authenticated_user": "your-github-username",
+    "authentication_method": "device_flow",
+    "token_scopes": ["gist", "read:org", "repo"],
+    "git_protocol": "https"
+  },
+  "repositories": {
+    "primary": {
+      "name": "your-main-repo",
+      "full_name": "your-username/your-main-repo",
+      "description": "Description of your main repository",
+      "visibility": "public",
+      "created_at": "YYYY-MM-DDTHH:MM:SSZ",
+      "url": "https://github.com/your-username/your-main-repo"
+    },
+    "other_repos": [
+      {
+        "name": "example-repo-1",
+        "full_name": "your-username/example-repo-1",
+        "description": "Example repository description",
+        "created_at": "YYYY-MM-DDTHH:MM:SSZ"
+      }
+    ]
+  },
+  "cli_commands": {
+    "executable_path": "C:\\Program Files\\GitHub CLI\\gh.exe",
+    "common_commands": {
+      "auth_status": "gh auth status",
+      "list_repos": "gh repo list",
+      "view_repo": "gh repo view [owner/repo]",
+      "clone_repo": "gh repo clone [owner/repo]",
+      "create_repo": "gh repo create [name]",
+      "create_issue": "gh issue create",
+      "list_issues": "gh issue list",
+      "create_pr": "gh pr create",
+      "list_prs": "gh pr list"
+    }
+  },
+  "setup_notes": {
+    "installation_method": "winget",
+    "authentication_completed": "YYYY-MM-DDTHH:MM:SSZ",
+    "persistent_auth": true,
+    "keyring_storage": true
+  }
+}
