@@ -1,0 +1,68 @@
+{
+  "project": {
+    "name": "KiloTest",
+    "description": "Test project workspace",
+    "created": "2025-08-02"
+  },
+  "github": {
+    "cli_version": "2.76.2",
+    "authenticated_user": "molodeztom",
+    "authentication_method": "device_flow",
+    "token_scopes": ["gist", "read:org", "repo"],
+    "git_protocol": "https"
+  },
+  "repositories": {
+    "primary": {
+      "name": "expense-splitting-app",
+      "full_name": "molodeztom/expense-splitting-app",
+      "description": "A web-based expense splitting application",
+      "visibility": "public",
+      "created_at": "2025-08-02T16:02:23Z",
+      "url": "https://github.com/molodeztom/expense-splitting-app"
+    },
+    "other_repos": [
+      {
+        "name": "LoraTestArduino",
+        "full_name": "molodeztom/LoraTestArduino",
+        "description": "Testproject to send / receive using LoRa with E32 modules",
+        "created_at": "2025-07-27T17:30:41Z"
+      },
+      {
+        "name": "Rainsensor",
+        "full_name": "molodeztom/Rainsensor",
+        "created_at": "2025-07-27T17:30:01Z"
+      },
+      {
+        "name": "E32_Lora_LIB",
+        "full_name": "molodeztom/E32_Lora_LIB",
+        "description": "Library for E32 Lora Modules",
+        "created_at": "2025-07-24T17:19:15Z"
+      },
+      {
+        "name": "HomeAutomationNodeRed",
+        "full_name": "molodeztom/HomeAutomationNodeRed",
+        "created_at": "2025-07-12T17:38:04Z"
+      }
+    ]
+  },
+  "cli_commands": {
+    "executable_path": "C:\\Program Files\\GitHub CLI\\gh.exe",
+    "common_commands": {
+      "auth_status": "gh auth status",
+      "list_repos": "gh repo list",
+      "view_repo": "gh repo view [owner/repo]",
+      "clone_repo": "gh repo clone [owner/repo]",
+      "create_repo": "gh repo create [name]",
+      "create_issue": "gh issue create",
+      "list_issues": "gh issue list",
+      "create_pr": "gh pr create",
+      "list_prs": "gh pr list"
+    }
+  },
+  "setup_notes": {
+    "installation_method": "winget",
+    "authentication_completed": "2025-08-02T16:28:00Z",
+    "persistent_auth": true,
+    "keyring_storage": true
+  }
+}
