@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SplitWise - Expense Splitting App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-calculator"></i>
+                    <span>SplitWise</span>
+                </div>
+                <div class="header-controls">
+                    <div class="group-selector">
+                        <select id="groupSelect">
+                            <option value="">Select Group</option>
+                        </select>
+                    </div>
+                    <div class="user-profile">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Sidebar Navigation -->
+            <nav class="sidebar">
+                <ul class="nav-menu">
+                    <li class="nav-item active" data-section="dashboard">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </li>
+                    <li class="nav-item" data-section="add-expense">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Add Expense</span>
+                    </li>
+                    <li class="nav-item" data-section="expenses">
+                        <i class="fas fa-list"></i>
+                        <span>Expenses</span>
+                    </li>
+                    <li class="nav-item" data-section="balances">
+                        <i class="fas fa-balance-scale"></i>
+                        <span>Balances</span>
+                    </li>
+                    <li class="nav-item" data-section="groups">
+                        <i class="fas fa-users"></i>
+                        <span>Groups</span>
+                    </li>
+                    <li class="nav-item" data-section="settings">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Dashboard Section -->
+                <section id="dashboard" class="content-section active">
+                    <div class="section-header">
+                        <h2>Dashboard</h2>
+                        <p>Overview of your expenses and balances</p>
+                    </div>
+                    
+                    <div class="dashboard-cards">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Total Expenses</h3>
+                                <i class="fas fa-receipt"></i>
+                            </div>
+                            <div class="card-value" id="totalExpenses">$0.00</div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>You Owe</h3>
+                                <i class="fas fa-arrow-up text-red"></i>
+                            </div>
+                            <div class="card-value text-red" id="youOwe">$0.00</div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Owed to You</h3>
+                                <i class="fas fa-arrow-down text-green"></i>
+                            </div>
+                            <div class="card-value text-green" id="owedToYou">$0.00</div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Net Balance</h3>
+                                <i class="fas fa-equals"></i>
+                            </div>
+                            <div class="card-value" id="netBalance">$0.00</div>
+                        </div>
+                    </div>
+
+                    <div class="recent-activity">
+                        <h3>Recent Activity</h3>
+                        <div id="recentExpenses" class="activity-list">
+                            <div class="empty-state">
+                                <i class="fas fa-inbox"></i>
+                                <p>No recent expenses. Add your first expense to get started!</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Add Expense Section -->
+                <section id="add-expense" class="content-section">
+                    <div class="section-header">
+                        <h2>Add New Expense</h2>
+                        <p>Split a new expense with your group</p>
+                    </div>
+
+                    <form id="expenseForm" class="expense-form">
+                        <div class="form-group">
+                            <label for="expenseDescription">Description</label>
+                            <input type="text" id="expenseDescription" placeholder="What was this expense for?" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expenseAmount">Amount</label>
+                                <input type="number" id="expenseAmount" step="0.01" placeholder="0.00" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="expenseCategory">Category</label>
+                                <select id="expenseCategory">
+                                    <option value="food">Food & Dining</option>
+                                    <option value="transport">Transportation</option>
+                                    <option value="entertainment">Entertainment</option>
+                                    <option value="shopping">Shopping</option>
+                                    <option value="utilities">Utilities</option>
+                                    <option value="travel">Travel</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="paidBy">Paid by</label>
+                            <select id="paidBy" required>
+                                <option value="">Select who paid</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Split Method</label>
+                            <div class="split-options">
+                                <label class="radio-option">
+                                    <input type="radio" name="splitMethod" value="equal" checked>
+                                    <span>Split Equally</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="splitMethod" value="percentage">
+                                    <span>By Percentage</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="splitMethod" value="custom">
+                                    <span>Custom Amounts</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="splitDetails" class="split-details">
+                            <!-- Split details will be populated dynamically -->
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="cancelExpense">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Add Expense</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Expenses Section -->
+                <section id="expenses" class="content-section">
+                    <div class="section-header">
+                        <h2>All Expenses</h2>
+                        <div class="section-controls">
+                            <div class="filter-controls">
+                                <select id="categoryFilter">
+                                    <option value="">All Categories</option>
+                                    <option value="food">Food & Dining</option>
+                                    <option value="transport">Transportation</option>
+                                    <option value="entertainment">Entertainment</option>
+                                    <option value="shopping">Shopping</option>
+                                    <option value="utilities">Utilities</option>
+                                    <option value="travel">Travel</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <select id="sortBy">
+                                    <option value="date-desc">Newest First</option>
+                                    <option value="date-asc">Oldest First</option>
+                                    <option value="amount-desc">Highest Amount</option>
+                                    <option value="amount-asc">Lowest Amount</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="expensesList" class="expenses-list">
+                        <div class="empty-state">
+                            <i class="fas fa-receipt"></i>
+                            <p>No expenses yet. Add your first expense to get started!</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Balances Section -->
+                <section id="balances" class="content-section">
+                    <div class="section-header">
+                        <h2>Balances</h2>
+                        <p>See who owes what and settle up</p>
+                    </div>
+
+                    <div class="balances-container">
+                        <div class="balance-summary">
+                            <h3>Balance Summary</h3>
+                            <div id="balancesList" class="balances-list">
+                                <div class="empty-state">
+                                    <i class="fas fa-balance-scale"></i>
+                                    <p>No balances to show. Add some expenses first!</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="settlement-suggestions">
+                            <h3>Settlement Suggestions</h3>
+                            <div id="settlementsList" class="settlements-list">
+                                <div class="empty-state">
+                                    <i class="fas fa-handshake"></i>
+                                    <p>No settlements needed yet.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Groups Section -->
+                <section id="groups" class="content-section">
+                    <div class="section-header">
+                        <h2>Groups</h2>
+                        <button class="btn btn-primary" id="createGroupBtn">
+                            <i class="fas fa-plus"></i> Create Group
+                        </button>
+                    </div>
+
+                    <div id="groupsList" class="groups-list">
+                        <div class="empty-state">
+                            <i class="fas fa-users"></i>
+                            <p>No groups yet. Create your first group to start splitting expenses!</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings Section -->
+                <section id="settings" class="content-section">
+                    <div class="section-header">
+                        <h2>Settings</h2>
+                        <p>Customize your app preferences</p>
+                    </div>
+
+                    <div class="settings-form">
+                        <div class="form-group">
+                            <label for="userName">Your Name</label>
+                            <input type="text" id="userName" placeholder="Enter your name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="userEmail">Email</label>
+                            <input type="email" id="userEmail" placeholder="Enter your email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="defaultCurrency">Default Currency</label>
+                            <select id="defaultCurrency">
+                                <option value="USD">USD ($)</option>
+                                <option value="EUR">EUR (€)</option>
+                                <option value="GBP">GBP (£)</option>
+                                <option value="JPY">JPY (¥)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-primary" id="saveSettings">Save Settings</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="createGroupModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create New Group</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="createGroupForm">
+                <div class="form-group">
+                    <label for="groupName">Group Name</label>
+                    <input type="text" id="groupName" placeholder="Enter group name" required>
+                </div>
+                <div class="form-group">
+                    <label>Add Members</label>
+                    <div id="membersContainer">
+                        <div class="member-input">
+                            <input type="text" placeholder="Member name" class="member-name">
+                            <input type="email" placeholder="Email (optional)" class="member-email">
+                            <button type="button" class="btn-remove-member">×</button>
+                        </div>
+                    </div>
+                    <button type="button" id="addMemberBtn" class="btn btn-secondary">
+                        <i class="fas fa-plus"></i> Add Member
+                    </button>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary modal-close">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Create Group</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Group Modal -->
+    <div id="editGroupModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Group</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="editGroupForm">
+                <div class="form-group">
+                    <label for="editGroupName">Group Name</label>
+                    <input type="text" id="editGroupName" placeholder="Enter group name" required>
+                </div>
+                <div class="form-group">
+                    <label>Members</label>
+                    <div id="editMembersContainer">
+                        <!-- Members will be populated dynamically -->
+                    </div>
+                    <button type="button" id="addEditMemberBtn" class="btn btn-secondary">
+                        <i class="fas fa-plus"></i> Add Member
+                    </button>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary modal-close">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Member Confirmation Modal -->
+    <div id="deleteMemberModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Delete Member</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to remove <strong id="deleteMemberName"></strong> from the group?</p>
+                <div id="memberBalanceInfo" class="balance-info">
+                    <!-- Balance information will be shown here -->
+                </div>
+                <div id="redistributionOptions" class="redistribution-options">
+                    <h4>How would you like to handle their balance?</h4>
+                    <label class="radio-option">
+                        <input type="radio" name="redistributionMethod" value="split" checked>
+                        <span>Split their balance among remaining members</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="redistributionMethod" value="settle">
+                        <span>Settle their balance first (recommended)</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary modal-close">Cancel</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteMember">Remove Member</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
