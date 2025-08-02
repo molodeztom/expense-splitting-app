@@ -61,7 +61,13 @@ SplitWise is a sophisticated web-based expense splitting application that makes 
 
 ## 🚀 Live Demo
 
-[View Live Demo](https://your-username.github.io/splitwise-app) *(Replace with your actual GitHub Pages URL)*
+**Demo Setup Required**: To set up a live demo, follow these steps:
+
+1. **Fork this repository** to your GitHub account
+2. **Enable GitHub Pages**: Go to Settings → Pages → Select source branch (main)
+3. **Access your demo** at: `https://your-username.github.io/repository-name`
+
+Alternatively, you can run the app locally by opening [`index.html`](index.html) in your web browser or serving it with a local development server.
 
 ## 📱 Screenshots
 
