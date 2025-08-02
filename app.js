@@ -12,11 +12,15 @@ class SplitWiseApp {
             userEmail: ''
         };
         
+        // Theme management
+        this.currentTheme = 'light';
+        
         this.init();
     }
 
     init() {
         this.loadData();
+        this.initializeTheme();
         this.setupEventListeners();
         this.setupNavigation();
         this.updateUI();
@@ -34,6 +38,7 @@ class SplitWiseApp {
             this.expenses = JSON.parse(localStorage.getItem('splitwise_expenses') || '[]');
             this.settings = { ...this.settings, ...JSON.parse(localStorage.getItem('splitwise_settings') || '{}') };
             this.currentUser = localStorage.getItem('splitwise_current_user') || this.generateUserId();
+            this.currentTheme = localStorage.getItem('splitwise_theme') || 'light';
             
             if (!localStorage.getItem('splitwise_current_user')) {
                 localStorage.setItem('splitwise_current_user', this.currentUser);
@@ -50,6 +55,7 @@ class SplitWiseApp {
             localStorage.setItem('splitwise_expenses', JSON.stringify(this.expenses));
             localStorage.setItem('splitwise_settings', JSON.stringify(this.settings));
             localStorage.setItem('splitwise_current_user', this.currentUser);
+            localStorage.setItem('splitwise_theme', this.currentTheme);
         } catch (error) {
             console.error('Error saving data:', error);
         }
@@ -156,6 +162,11 @@ class SplitWiseApp {
         // Cancel expense
         document.getElementById('cancelExpense').addEventListener('click', () => {
             this.resetExpenseForm();
+        });
+
+        // Theme toggle
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            this.toggleTheme();
         });
     }
 
@@ -1324,6 +1335,37 @@ class SplitWiseApp {
             notification.classList.remove('show');
             setTimeout(() => notification.remove(), 300);
         }, 3000);
+    }
+
+    // Theme Management
+    initializeTheme() {
+        this.applyTheme(this.currentTheme);
+        this.updateThemeToggleIcon();
+    }
+
+    toggleTheme() {
+        this.currentTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+        this.applyTheme(this.currentTheme);
+        this.updateThemeToggleIcon();
+        this.saveData();
+        this.showNotification(`Switched to ${this.currentTheme} mode`, 'success');
+    }
+
+    applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+    }
+
+    updateThemeToggleIcon() {
+        const themeToggle = document.getElementById('themeToggle');
+        const icon = themeToggle.querySelector('i');
+        
+        if (this.currentTheme === 'dark') {
+            icon.className = 'fas fa-sun';
+            themeToggle.title = 'Switch to light mode';
+        } else {
+            icon.className = 'fas fa-moon';
+            themeToggle.title = 'Switch to dark mode';
+        }
     }
 }
 
